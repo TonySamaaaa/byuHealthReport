@@ -7,6 +7,7 @@ class byuLogin {
 	private $curl;
 	
 	private $loginCode;			//验证码Cookie
+	private $AuthToken;
 	
 	function __construct() {
 		$this->curl = new Curl();
@@ -45,7 +46,8 @@ class byuLogin {
 		));
 		if ($this->curl->error) throw new Exception('login error');
 		
-		return($this->curl->getCookie('Auth-Token'));
+		$this->AuthToken = $this->curl->getCookie('Auth-Token');
+		return($this->AuthToken);
 	}
 }
 ?>
